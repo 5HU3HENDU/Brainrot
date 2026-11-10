@@ -33,11 +33,14 @@
   No war, no crime. Every film streams from YouTube; nothing is hosted here.
 </footer>
 
-<div class="overlay" id="overlay"><div class="modal" id="modal"></div></div>
-
 <div class="player" id="player">
-  <div class="bar"><button id="playerClose">✕ Close</button></div>
-  <iframe id="playerFrame" src="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+  <div class="sheet" id="playerSheet">
+    <div class="video-wrap">
+      <iframe id="playerFrame" src="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      <button class="pclose" id="playerClose">✕</button>
+    </div>
+    <div class="pbody" id="playerBody"></div>
+  </div>
 </div>
 
 <script src="data.js"></script>

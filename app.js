@@ -117,31 +117,16 @@ function toggleList(id) {
   render();
 }
 
-function openModal(id) {
+function openPlayer(id) {
   const f = byId(id);
   const inList = myList.has(id);
-  $("#modal").innerHTML =
-    '<div class="thumb"><img src="' + thumb(f.id, true) + '" onerror="this.onerror=null;this.src=\'' + thumb(f.id) + '\'" alt="">' +
-    '<button class="close" id="modalClose">✕</button></div>' +
-    '<div class="mbody"><h2>' + esc(f.title) + "</h2>" +
+  $("#playerBody").innerHTML =
+    "<h2>" + esc(f.title) + "</h2>" +
     '<div class="meta">' + esc(f.channel) + " · " + durLabel(f.min) + " · " + f.cat + "</div>" +
     "<p>" + esc(f.note) + "</p>" +
     '<div class="actions">' +
-    '<button class="btn-play" data-play="' + f.id + '">▶ Play</button>' +
     '<button class="btn-list" data-list="' + f.id + '">' + (inList ? "✓ In My List" : "+ My List") + "</button>" +
-    "</div></div>";
-  $("#overlay").classList.add("open");
-  document.body.style.overflow = "hidden";
-  $("#modalClose").onclick = closeModal;
-}
-
-function closeModal() {
-  $("#overlay").classList.remove("open");
-  document.body.style.overflow = "";
-}
-
-function openPlayer(id) {
-  closeModal();
+    "</div>";
   $("#playerFrame").src =
     "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0&modestbranding=1";
   $("#player").classList.add("open");
@@ -159,16 +144,20 @@ document.addEventListener("click", (e) => {
   const play = e.target.closest("[data-play]");
   if (play) { openPlayer(play.dataset.play); return; }
   const listBtn = e.target.closest("[data-list]");
-  if (listBtn) { toggleList(listBtn.dataset.list); return; }
+  if (listBtn) {
+    toggleList(listBtn.dataset.list);
+    if (listBtn.closest("#player")) listBtn.textContent = myList.has(listBtn.dataset.list) ? "✓ In My List" : "+ My List";
+    return;
+  }
   const card = e.target.closest(".card");
-  if (card) { openModal(card.dataset.id); return; }
+  if (card) { openPlayer(card.dataset.id); return; }
 });
-$("#overlay").addEventListener("click", (e) => {
-  if (e.target === $("#overlay")) closeModal();
+$("#player").addEventListener("click", (e) => {
+  if (e.target === $("#player")) closePlayer();
 });
 $("#playerClose").onclick = closePlayer;
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") { closePlayer(); closeModal(); }
+  if (e.key === "Escape") closePlayer();
 });
 $("#search").addEventListener("input", (e) => {
   query = e.target.value.trim();
