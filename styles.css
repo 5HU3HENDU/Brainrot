@@ -1,0 +1,167 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: #141414;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+}
+a { color: inherit; }
+button { font-family: inherit; cursor: pointer; }
+img { display: block; }
+
+/* ---------- header ---------- */
+header {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px;
+  background: linear-gradient(#141414 70%, rgba(20,20,20,0));
+}
+.wordmark {
+  color: #E50914; font-weight: 900; letter-spacing: .06em;
+  font-size: 22px; line-height: 1; white-space: nowrap;
+  text-decoration: none;
+}
+.wordmark small { color: #fff; font-weight: 700; font-size: 11px; letter-spacing: .14em; display: block; }
+.search {
+  flex: 1; max-width: 340px; margin-left: auto;
+  background: #222; border: 1px solid #333; border-radius: 4px;
+  color: #fff; padding: 8px 10px; font-size: 14px; outline: none;
+}
+.search::placeholder { color: #888; }
+.search:focus { border-color: #666; }
+.navbtn {
+  background: transparent; border: 1px solid #555; color: #fff;
+  border-radius: 4px; padding: 8px 12px; font-size: 13px; font-weight: 600;
+  white-space: nowrap;
+}
+.navbtn.on { background: #E50914; border-color: #E50914; }
+
+/* ---------- filter chips ---------- */
+.chips {
+  display: flex; gap: 8px; padding: 4px 16px 12px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  background: #222; border: 1px solid #333; color: #ddd;
+  border-radius: 999px; padding: 6px 14px; font-size: 13px; white-space: nowrap;
+}
+.chip.on { background: #fff; color: #141414; border-color: #fff; font-weight: 700; }
+
+/* ---------- hero ---------- */
+.hero { position: relative; margin: 0 0 8px; }
+.hero img.bg {
+  width: 100%; height: 56vw; max-height: 520px; min-height: 260px;
+  object-fit: cover; object-position: center 20%;
+}
+.hero .shade {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(20,20,20,.92) 0%, rgba(20,20,20,.55) 45%, rgba(20,20,20,.05) 75%),
+              linear-gradient(0deg, #141414 0%, rgba(20,20,20,0) 40%);
+}
+.hero .info { position: absolute; left: 16px; right: 16px; bottom: 20px; max-width: 560px; }
+.hero .kicker { color: #E50914; font-size: 12px; font-weight: 800; letter-spacing: .18em; margin-bottom: 6px; }
+.hero h1 { font-size: clamp(24px, 5.5vw, 44px); line-height: 1.05; margin-bottom: 8px; }
+.hero .meta { color: #ccc; font-size: 13px; margin-bottom: 8px; }
+.hero p { color: #ddd; font-size: 15px; line-height: 1.45; margin-bottom: 14px; }
+.hero .actions { display: flex; gap: 10px; }
+.btn-play {
+  background: #E50914; color: #fff; border: 0; border-radius: 4px;
+  padding: 11px 22px; font-size: 15px; font-weight: 700;
+}
+.btn-list {
+  background: rgba(255,255,255,.14); color: #fff; border: 1px solid rgba(255,255,255,.4);
+  border-radius: 4px; padding: 11px 18px; font-size: 15px; font-weight: 600;
+}
+
+/* ---------- rows ---------- */
+main { padding-bottom: 40px; }
+.row { margin: 18px 0 6px; }
+.row h2 { font-size: 17px; font-weight: 700; padding: 0 16px 10px; }
+.row .scroller {
+  display: flex; gap: 10px; overflow-x: auto; padding: 0 16px 8px;
+  scroll-snap-type: x mandatory; scrollbar-width: none;
+}
+.row .scroller::-webkit-scrollbar { display: none; }
+.card {
+  flex: 0 0 220px; scroll-snap-align: start; cursor: pointer;
+  background: #1c1c1c; border-radius: 6px; overflow: hidden;
+}
+.card .thumb { position: relative; }
+.card .thumb img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.card .dur {
+  position: absolute; right: 6px; bottom: 6px;
+  background: rgba(0,0,0,.8); color: #fff; font-size: 11px; font-weight: 600;
+  padding: 2px 6px; border-radius: 3px;
+}
+.card .body { padding: 9px 10px 11px; }
+.card h3 { font-size: 13.5px; line-height: 1.3; font-weight: 600; margin-bottom: 4px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card .sub { color: #999; font-size: 12px; }
+.card .tag {
+  display: inline-block; margin-top: 6px; font-size: 11px; font-weight: 700;
+  color: #E50914; letter-spacing: .06em; text-transform: uppercase;
+}
+.empty { color: #999; padding: 8px 16px 24px; font-size: 14px; }
+
+/* ---------- my list grid ---------- */
+#mylistView { padding: 8px 0 40px; }
+#mylistView h2 { font-size: 20px; padding: 8px 16px 14px; }
+.grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px; padding: 0 16px;
+}
+.grid .card { flex: none; }
+
+/* ---------- detail modal ---------- */
+.overlay {
+  position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.7);
+  display: none; align-items: flex-end; justify-content: center;
+}
+.overlay.open { display: flex; }
+.modal {
+  background: #1c1c1c; width: 100%; max-width: 720px; max-height: 92vh;
+  overflow-y: auto; border-radius: 12px 12px 0 0; position: relative;
+}
+.modal .thumb { position: relative; }
+.modal .thumb img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.modal .close {
+  position: absolute; top: 10px; right: 10px; width: 34px; height: 34px;
+  border-radius: 50%; border: 0; background: rgba(0,0,0,.7); color: #fff; font-size: 18px;
+}
+.modal .mbody { padding: 16px 18px 22px; }
+.modal h2 { font-size: 21px; line-height: 1.25; margin-bottom: 6px; }
+.modal .meta { color: #aaa; font-size: 13px; margin-bottom: 10px; }
+.modal p { color: #ddd; font-size: 15px; line-height: 1.5; margin-bottom: 16px; }
+.modal .actions { display: flex; gap: 10px; }
+
+/* ---------- player ---------- */
+.player {
+  position: fixed; inset: 0; z-index: 200; background: #000;
+  display: none; flex-direction: column;
+}
+.player.open { display: flex; }
+.player .bar { display: flex; justify-content: flex-end; padding: 10px 12px; }
+.player .bar button {
+  background: #222; color: #fff; border: 1px solid #444; border-radius: 4px;
+  padding: 8px 14px; font-size: 14px;
+}
+.player iframe { flex: 1; width: 100%; border: 0; }
+
+footer {
+  color: #777; font-size: 12.5px; line-height: 1.6; text-align: center;
+  padding: 8px 20px 28px;
+}
+
+@media (min-width: 760px) {
+  header { padding: 14px 28px; }
+  .chips { padding-left: 28px; padding-right: 28px; }
+  .hero .info { left: 28px; }
+  .row h2 { padding-left: 28px; }
+  .row .scroller { padding-left: 28px; padding-right: 28px; }
+  .card { flex-basis: 260px; }
+  .overlay { align-items: center; padding: 20px; }
+  .modal { border-radius: 12px; }
+  #mylistView h2, .grid { padding-left: 28px; padding-right: 28px; }
+}

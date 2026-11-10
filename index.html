@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brainrot — Short films & documentaries on tech, business & design</title>
+<meta name="description" content="A curated shelf of short films and documentaries about tech, business and design. No war, no crime — just stories about building things.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <a class="wordmark" href="#" onclick="return false">BRAINROT<small>TECH · BUSINESS · DESIGN</small></a>
+  <input class="search" id="search" type="search" placeholder="Search films…" autocomplete="off">
+  <button class="navbtn" id="mylistBtn">My List</button>
+</header>
+
+<div class="chips">
+  <button class="chip on" data-dur="all">All</button>
+  <button class="chip" data-dur="u15">Under 15 min</button>
+  <button class="chip" data-dur="m15_30">15–30 min</button>
+  <button class="chip" data-dur="p30">30+ min</button>
+</div>
+
+<section class="hero" id="hero"></section>
+
+<main>
+  <div id="rows"></div>
+  <div id="mylistView" style="display:none"></div>
+</main>
+
+<footer>
+  Brainrot — a hand-picked shelf of short films and documentaries about tech, business and design.<br>
+  No war, no crime. Every film streams from YouTube; nothing is hosted here.
+</footer>
+
+<div class="overlay" id="overlay"><div class="modal" id="modal"></div></div>
+
+<div class="player" id="player">
+  <div class="bar"><button id="playerClose">✕ Close</button></div>
+  <iframe id="playerFrame" src="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
